@@ -9,6 +9,7 @@ return {
         "go", "gomod", "gowork", "gosum", "lua", "vim", "vimdoc",
         -- markdown + языки, встраиваемые в .md (теги и frontmatter)
         "markdown", "markdown_inline", "html", "yaml",
+        "proto",
       }
 
       -- replaces ensure_installed (no-op if already installed)
@@ -16,7 +17,7 @@ return {
 
       -- replaces highlight = { enable = true } and indent = { enable = true }
       vim.api.nvim_create_autocmd("FileType", {
-        pattern = { "go", "gomod", "gowork", "gosum", "lua", "vim", "help", "markdown" },
+        pattern = { "go", "gomod", "gowork", "gosum", "lua", "vim", "help", "markdown", "proto" },
         callback = function(args)
           if pcall(vim.treesitter.start, args.buf) then
             vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"

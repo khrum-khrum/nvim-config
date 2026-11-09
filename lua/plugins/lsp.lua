@@ -42,6 +42,12 @@ return {
       })
       vim.lsp.enable("gopls")
 
+      -- proto: buf lsp из установленного в системе buf (навигация, references, rename, диагностика)
+      vim.lsp.config("buf_ls", {
+        capabilities = capabilities,
+      })
+      vim.lsp.enable("buf_ls")
+
       vim.api.nvim_create_autocmd("LspAttach", {
         callback = function(event)
           local map = function(keys, func, desc)
@@ -74,6 +80,7 @@ return {
     opts = {
       formatters_by_ft = {
         go = { "goimports", "gofumpt" },
+        proto = { "buf" },
       },
       format_on_save = {
         timeout_ms = 1000,
